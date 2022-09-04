@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="post" th:object="${user}" th:action="@{/register}">
+
+
+       name: <input type="text" onkeyup="validateName()" id="form_name" th:field="*{name}" />
+        <span id="nameError">
+            <span  th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+        </span>
+
+        email: <input type="text" th:field="*{email}" />
+        <span id="email_error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+
+        password: <input type="text" th:field="*{password}" />
+        <span id="password_error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}" ></span>
+
+        confirmPassword <input type="text" th:field="*{confirmPassword}" />
+        <input id="confirmPassword_error" type="submit" value="submit" />
+
+    </form>
+
+<!--    <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>-->
+    <script th:src="@{/js/register-validate.js}"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<a th:href="@{/logout}"> logout  </a>
+
+    <div>
+        your total amount is
+        <span th:text="${totalAmount}"></span>
+    </div>
+    <form th:action="@{/filterExpenses}" method="get" th:object="${filter}">
+        keyword: <input type="text" th:field="*{keyword}">
+        <select th:field="*{sortBy}">
+            <option label="date" value="date"></option>
+            <option label="amount" value="amount"></option>
+        </select>
+        startDate <input type="date" th:field="*{startDate}">
+        emdDate <input type="date" th:field="*{endDate}">
+        <input type="submit" value="submit">
+    </form>
+
+    <div th:each="listItem : ${expenseList}">
+        <p>
+            <span th:text="${listItem.name}"></span>
+            <span th:text="${listItem.amount}"></span>
+            <span th:text="${listItem.dateString}"></span>
+            <a th:href="@{/expense/update(id=${listItem.expenseId})}">
+                update
+            </a>
+            <a th:href="@{/expense/delete(id=${listItem.expenseId})}">
+                delete
+            </a>
+        </p>
+    </div>
+</body>
+</html>

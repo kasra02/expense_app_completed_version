@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <form th:action="@{/expense/processForm}" method="post" th:object="${expenseDto}">
+        <label>
+            <input type="hidden" th:field="*{id}"  />
+        </label>
+        <label>
+            <input type="hidden" th:field="*{expenseId}"  />
+        </label>
+        <label>
+            name  <input type="text" th:field="*{name}"  />
+        </label>
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+        <label>
+            description
+            <input type="text" th:field="*{description}"  />
+        </label>
+        <label>
+            amount
+            <input type="text" th:field="*{amount}"  />
+            <span th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}"></span>
+        </label>
+        <label>
+            dateString
+            <input type="date"  th:field="*{dateString}"  />
+        </label>
+        <span th:if="${#fields.hasErrors('dateString')}" th:errors="*{dateString}"></span>
+        <input type="submit" value="submit">
+    </form>
+
+</body>
+</html>
